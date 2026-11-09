@@ -304,20 +304,26 @@ img {
     padding: 0;
 }
 
-.apps {
+.cards {
     clear: both;
+    margin-bottom: 2rem;
 }
 
-.app-list {
+.card-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
     gap: .75rem;
-    margin: 0 0 2rem;
+    margin: 0;
     padding: 0;
     list-style: none;
 }
 
-.app-card {
+.cards-more {
+    margin: .75rem 0 0;
+    font-size: .9rem;
+}
+
+.card {
     display: flex;
     align-items: center;
     gap: .9rem;
@@ -342,19 +348,24 @@ img {
     }
 }
 
-.app-text {
+// Photos (e.g. shop products) get gentler corners than app icons
+.cards-photo .card img {
+    border-radius: 8px;
+}
+
+.card-text {
     display: flex;
     flex-direction: column;
     gap: .15rem;
     min-width: 0;
 }
 
-.app-name {
+.card-name {
     font-weight: 650;
     line-height: 1.25;
 }
 
-.app-desc {
+.card-desc {
     color: #666;
     font-size: .875rem;
     line-height: 1.35;

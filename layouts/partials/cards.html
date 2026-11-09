@@ -1,0 +1,47 @@
+{{- /*
+  A section of link cards with image, name and description.
+
+  Usage:
+    {{ partial "cards.html" (dict "title" "Apper" "items" site.Data.apps.apps "dir" "apps") }}
+
+  Parameters:
+    title  Section heading.
+    items  List of cards, each with: name, description, image, and either
+           url (any link) or id (Google Play package name).
+    dir    Folder in the site's assets/ that holds the images.
+    style  Optional: "photo" for photos (gentler corners than app icons).
+    more   Optional: dict with url and text for a link below the cards.
+
+  Images are cropped/resized at build time (no external requests): 192x192 WebP
+  (3x the 64 px display size), Lanczos filter, quality 90, WebP hint "photo" for
+  style "photo" and "icon" otherwise.
+*/ -}}
+{{- $dir := .dir }}
+{{- $imgOptions := printf "192x192 webp q90 Lanczos %s" (cond (eq .style "photo") "photo" "icon") }}
+{{- with .items }}
+<section class="cards{{ with $.style }} cards-{{ . }}{{ end }}" aria-label="{{ $.title }}">
+  <h2 class="latest-heading">{{ $.title }}</h2>
+  <ul class="card-list">
+    {{- range . }}
+    {{- $url := .url | default (printf "https://play.google.com/store/apps/details?id=%s" .id) }}
+    <li>
+      <a class="card" href="{{ $url }}" rel="noopener">
+        {{- with resources.Get (printf "%s/%s" $dir .image) }}
+          {{- $img := .Fill $imgOptions }}
+        <img src="{{ $img.RelPermalink }}" width="64" height="64" alt="" loading="lazy">
+        {{- else }}
+          {{- warnf "cards.html: image %q not found in assets/%s/" .image $dir }}
+        {{- end }}
+        <span class="card-text">
+          <span class="card-name">{{ .name }}</span>
+          <span class="card-desc">{{ .description }}</span>
+        </span>
+      </a>
+    </li>
+    {{- end }}
+  </ul>
+  {{- with $.more }}
+  <p class="cards-more"><a href="{{ .url }}" rel="noopener">{{ .text }} →</a></p>
+  {{- end }}
+</section>
+{{- end }}

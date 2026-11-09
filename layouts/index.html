@@ -7,7 +7,8 @@
     <div class="content">
       {{ partial "header.html" . }}
       {{ .Content }}
-      {{ partial "apps.html" . }}
+      {{ partial "cards.html" (dict "title" "Apper" "items" site.Data.apps.apps "dir" "apps") }}
+      {{ partial "cards.html" (dict "title" "Populære adaptere" "items" site.Data.shop.products "dir" "shop" "style" "photo" "more" (dict "url" "https://masegg.no/" "text" "Se alle produktene fra Måsegg Studio")) }}
       {{ if gt (len ( where .Site.RegularPages "Section" "posts" )) 0 }}
       <h2 class="latest-heading">Siste innlegg</h2>
       <section aria-label="Siste innlegg">
