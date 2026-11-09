@@ -304,6 +304,62 @@ img {
     padding: 0;
 }
 
+.apps {
+    clear: both;
+}
+
+.app-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: .75rem;
+    margin: 0 0 2rem;
+    padding: 0;
+    list-style: none;
+}
+
+.app-card {
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+    height: 100%;
+    padding: .75rem;
+    border: 1px solid #e8e5df;
+    border-radius: 14px;
+    background: #fff;
+    color: inherit;
+    text-decoration: none;
+    transition: border-color .15s;
+
+    &:hover {
+        border-color: #c4bfb4;
+    }
+
+    img {
+        flex: none;
+        width: 64px;
+        height: 64px;
+        border-radius: 22%;
+    }
+}
+
+.app-text {
+    display: flex;
+    flex-direction: column;
+    gap: .15rem;
+    min-width: 0;
+}
+
+.app-name {
+    font-weight: 650;
+    line-height: 1.25;
+}
+
+.app-desc {
+    color: #666;
+    font-size: .875rem;
+    line-height: 1.35;
+}
+
 .post-list li {
     display: grid;
     grid-template-columns: 7.5rem minmax(0, 1fr);

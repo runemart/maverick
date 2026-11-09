@@ -1,0 +1,26 @@
+{{- /*
+  App cards linking to Google Play.
+  Data: data/apps.toml in the site ([[apps]] with name, id, icon, description).
+  Icons: assets/apps/<icon> in the site, resized and converted to WebP at build time.
+*/ -}}
+{{- with site.Data.apps.apps }}
+<section class="apps" aria-label="Apper">
+  <h2 class="latest-heading">Apper</h2>
+  <ul class="app-list">
+    {{- range . }}
+    <li>
+      <a class="app-card" href="https://play.google.com/store/apps/details?id={{ .id }}" rel="noopener">
+        {{- with resources.Get (printf "apps/%s" .icon) }}
+          {{- $img := .Resize "128x128 webp" }}
+        <img src="{{ $img.RelPermalink }}" width="64" height="64" alt="" loading="lazy">
+        {{- end }}
+        <span class="app-text">
+          <span class="app-name">{{ .name }}</span>
+          <span class="app-desc">{{ .description }}</span>
+        </span>
+      </a>
+    </li>
+    {{- end }}
+  </ul>
+</section>
+{{- end }}
