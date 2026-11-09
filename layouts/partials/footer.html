@@ -2,8 +2,11 @@
 <footer class="site-footer">
   <div class="content">
     <p>{{ .Site.Title }}</p>
-    {{ with .Site.Home.OutputFormats.Get "RSS" }}
-    <a href="{{ .RelPermalink }}">RSS</a>
-    {{ end }}
+    <div class="footer-links">
+      {{ partial "social.html" . }}
+      {{ with .Site.Home.OutputFormats.Get "RSS" }}
+      <a href="{{ .RelPermalink }}">RSS</a>
+      {{ end }}
+    </div>
   </div>
 </footer>

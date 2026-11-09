@@ -1,0 +1,22 @@
+{{- /*
+  Social media links with inline SVG icons (no external requests).
+  Icons: assets/icons/<icon>.svg (Simple Icons, CC0).
+  Config in hugo.toml:
+    [[params.social]]
+      name = "GitHub"
+      icon = "github"
+      url  = "https://github.com/..."
+*/ -}}
+{{- with site.Params.social }}
+<ul class="social">
+  {{- range . }}
+    {{- $link := . }}
+    {{- with resources.Get (printf "icons/%s.svg" $link.icon) }}
+      {{- $svg := .Content | replaceRE `<title>.*?</title>` "" | replaceRE `<svg ` `<svg aria-hidden="true" focusable="false" ` }}
+  <li><a href="{{ $link.url }}" title="{{ $link.name }}" aria-label="{{ $link.name }}" rel="me noopener">{{ $svg | safeHTML }}</a></li>
+    {{- else }}
+      {{- warnf "social.html: icon %q not found in assets/icons/" $link.icon }}
+    {{- end }}
+  {{- end }}
+</ul>
+{{- end }}
