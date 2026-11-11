@@ -185,13 +185,15 @@ header a,
 .post-list a,
 .archive-title,
 .post-tags a,
-.support-link {
+.support-link,
+.cards-more a {
     text-decoration: none;
 }
 
 .post-list a:hover,
 .archive-title:hover,
-.post-tags a:hover {
+.post-tags a:hover,
+.cards-more a:hover {
     text-decoration: underline;
 }
 
