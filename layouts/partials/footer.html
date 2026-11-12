@@ -10,3 +10,7 @@
     </div>
   </div>
 </footer>
+{{- /* panorama-scripts.html lives in the site's layouts/partials */ -}}
+{{ if and .IsPage (.HasShortcode "panorama") (templates.Exists "partials/panorama-scripts.html") }}
+  {{- partial "panorama-scripts.html" . }}
+{{ end }}
