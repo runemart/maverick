@@ -14,3 +14,7 @@
 {{ if and .IsPage (.HasShortcode "panorama") (templates.Exists "partials/panorama-scripts.html") }}
   {{- partial "panorama-scripts.html" . }}
 {{ end }}
+{{- /* gpx-scripts.html comes from the gpx-shortcode theme */ -}}
+{{ if and .IsPage (.HasShortcode "gpx") (templates.Exists "partials/gpx-scripts.html") }}
+  {{- partial "gpx-scripts.html" . }}
+{{ end }}
