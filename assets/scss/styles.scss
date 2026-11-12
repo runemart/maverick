@@ -421,6 +421,32 @@ img {
     font-size: .875rem;
 }
 
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    gap: 0 .8rem;
+    margin-top: 1.5rem;
+}
+
+// Same fixed line height for every size (fits the largest, 2em), so all rows are equally tall
+.tag-cloud-item {
+    line-height: 2rem;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+.tag-cloud-item:hover {
+    text-decoration: underline;
+}
+
+.tag-size-1 { font-size: .85em; opacity: .7; }
+.tag-size-2 { font-size: 1.05em; opacity: .8; }
+.tag-size-3 { font-size: 1.3em; opacity: .9; }
+.tag-size-4 { font-size: 1.6em; font-weight: 600; }
+.tag-size-5 { font-size: 2em; font-weight: 700; }
+
 .support-link {
     display: inline-block;
     padding: .45rem .75rem;
