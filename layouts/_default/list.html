@@ -8,7 +8,7 @@
     {{ partial "header.html" . }}
     <section class="archive">
       <header class="archive-header">
-        <h1>{{ .Title }}</h1>
+        <h1>{{ if eq .Kind "term" }}Tag: {{ .Data.Term }}{{ else }}{{ .Title }}{{ end }}</h1>
         {{ if .Content }}{{ .Content }}{{ end }}
       </header>
       <ul class="archive-list">
