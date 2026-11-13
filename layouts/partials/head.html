@@ -2,14 +2,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Liste - {{ .Site.BaseURL }}">
+    <meta name="author" content="{{ or .Params.author .Site.Params.author }}">
     <title>{{ if eq .IsHome true }}{{ .Site.Title }}{{ else if eq .Kind "term" }}Tag: {{ .Data.Term }} | {{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
     <meta name="description" content="{{ if ne .Description "" }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
     {{ template "_internal/opengraph.html" . }}
     {{ template "_internal/schema.html" . }}
     {{ template "_internal/google_analytics.html" . }}
     <link rel="canonical" href="{{ .Permalink }}">
-    <link rel="alternate" type="application/atom+xml" title="{{ .Site.Title }}" href="{{ .Site.BaseURL }}/atom.xml" />
+    {{- with site.Home.OutputFormats.Get "RSS" }}
+    <link rel="alternate" type="{{ .MediaType.Type }}" title="{{ site.Title }}" href="{{ .Permalink }}" />
+    {{- end }}
     <link rel="alternate" type="application/json" title="{{ .Site.Title }}" href="{{ .Site.BaseURL }}/feed.json" />
     <link rel="preload" href="{{ "fonts/bricolage-grotesque-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
     {{ $styles := resources.Get "scss/styles.scss" | toCSS (dict "outputStyle" "compressed") | minify }}
@@ -39,7 +41,7 @@
         "headline": "{{ .Title | safeJS }}",
         "alternativeHeadline": "{{ .Params.lead }}",
         "description": "{{ if .Description }}{{ .Description | safeJS }}{{ else }}{{ .Summary }}{{ end }}",
-        "inLanguage": {{ .Site.LanguageCode | default "en-us" }},
+        "inLanguage": {{ site.Language.Locale | default "en-us" }},
         "isFamilyFriendly": "true",
         "mainEntityOfPage": {
             "@type": "WebPage",
