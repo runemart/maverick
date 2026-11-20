@@ -12,7 +12,7 @@
       <div class="post-meta">
         <time class="time" datetime="{{ dateFormat "2006-01-02" .Date }}">{{ .Date.Format "2. January 2006" | lower }}</time>
         {{ $taxonomy := "tags" }} {{ with .Param $taxonomy }}
-        <span class="post-tags">{{ range $index, $tag := . }}{{ with $.Site.GetPage (printf "/%s/%s" $taxonomy $tag) }}<a href="{{ .Permalink }}">{{ $tag }}</a>{{ end }}{{ end }}</span>
+        <span class="post-tags">{{ range $index, $tag := . }}{{ with $.Site.GetPage (printf "/%s/%s" $taxonomy $tag) }}<a href="{{ .Permalink }}">{{ $tag }}</a> {{ end }}{{ end }}</span>
         {{ end }}
       </div>
       {{ end }}

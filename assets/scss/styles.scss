@@ -185,7 +185,6 @@ a:hover {
 header a,
 .post-list a,
 .archive-title,
-.post-tags a,
 .support-link,
 .cards-more a {
     text-decoration: none;
@@ -193,7 +192,6 @@ header a,
 
 .post-list a:hover,
 .archive-title:hover,
-.post-tags a:hover,
 .cards-more a:hover {
     text-decoration: underline;
 }
@@ -263,14 +261,21 @@ ul, ol {
     display: flex;
     flex-wrap: wrap;
     gap: .5rem;
-    margin-top: .5rem;
+    margin-top: .4rem;
 }
 
 .post-tags a {
     background: #f0f0f0;
-    color: #000;
+    color: #666;
     padding: .1rem .4rem;
-    border-radius: .2rem;
+    border-radius: .3rem;
+    border: 1px solid #e8e5df;
+    background: #fff;
+    text-decoration: none;
+
+    &:hover {
+        border-color: #c4bfb4;
+    }
 }
 
 header ul a:first-child {
@@ -345,7 +350,6 @@ img {
     background: #fff;
     color: inherit;
     text-decoration: none;
-    transition: border-color .15s;
 
     &:hover {
         border-color: #c4bfb4;
@@ -533,7 +537,7 @@ th {
     margin: 5rem auto 0;
     padding: 1.25rem 0 0;
     border-top: 1px solid #e8e5df;
-    color: #777;
+    color: #666;
 }
 
 .site-footer .content {
@@ -550,6 +554,10 @@ th {
     display: flex;
     align-items: center;
     gap: 1rem;
+}
+
+.footer-links a {
+        text-decoration: none;
 }
 
 .social {
@@ -576,6 +584,11 @@ th {
         height: 1.1rem;
         fill: currentColor;
     }
+}
+
+.social-rss svg {
+    width: 1.35rem;
+    height: 1.35rem;
 }
 
 @media (max-width: 480px) {

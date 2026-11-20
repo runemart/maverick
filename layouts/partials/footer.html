@@ -4,8 +4,19 @@
     <p>{{ .Site.Title }}</p>
     <div class="footer-links">
       {{ partial "social.html" . }}
+
+      ·
+
       {{ with .Site.Home.OutputFormats.Get "RSS" }}
-      <a href="{{ .RelPermalink }}">RSS</a>
+      {{- $href := .RelPermalink }}
+      {{- with resources.Get "icons/rss.svg" }}
+      {{- $svg := .Content | replaceRE `<title>.*?</title>` "" | replaceRE `<svg ` `<svg aria-hidden="true" focusable="false" ` }}
+      <ul class="social social-rss">
+        <li><a href="{{ $href }}" title="RSS" aria-label="RSS">{{ $svg | safeHTML }}</a></li>
+      </ul>
+      {{- else }}
+      <a href="{{ $href }}">RSS</a>
+      {{- end }}
       {{ end }}
     </div>
   </div>
